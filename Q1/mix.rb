@@ -23,7 +23,13 @@ x = readlines.each{|item| item = item.chomp.to_i }
 x.reject! {|item| !(item.empty?) }
 
 for want in x do
-   p want
+   for j in ings do
+      if want > j.proof
+         p "Impossible to make."
+      end
+   end
+
+   
 end
 
 
