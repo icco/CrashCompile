@@ -14,11 +14,17 @@ def main lines
   entries.each do |e|
     if e.size == 3
       if e[1] == "IN"
-        data[e[0]] ||= { :in => e[2].to_i, :time => 0 }  
-        data[e[0]] = { :in => e[2].to_i }
+        if data[e[0]][:in].nil?
+          data[e[0]] ||= { :in => e[2].to_i, :time => 0 }  
+          data[e[0]] = { :in => e[2].to_i }
+        else
+          data[e[0]][:time] ||= 0
+          data[e[0]][:time] += 7200
+        end
       elsif e[1] == "OUT"
         data[e[0]][:time] ||= 0
         data[e[0]][:time] += (e[2].to_i - data[e[0]][:in])
+        data[e[0]][:in] = nil
       end
     elsif e.size == 4
       names[e[0]] = e[3]
