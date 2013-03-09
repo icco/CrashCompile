@@ -1,4 +1,5 @@
-Signin Machine
+# Signin Machine
+
 In a parallel universe, the dojo signin machine keeps a combined log of all signins, sign outs and new members. Your job is to take this log and print the top 5 members who spend the most time at the dojo.
 
 Format: When a new member signs up, the log will include a line with the following fields: ID, email, billing address, name
@@ -21,7 +22,9 @@ Name1: seconds Name2: seconds Name3: seconds Name4: seconds Name5: seconds
 
 If there are less than 5 users in the log, your program should print all of them. If two users are tied for a particular position, they should be listed in alphabetical order by name. If there are multiple users tied for the 5th place, only the first user alphabetically should be printed.
 
-Sample Input
+## Sample Input
+
+```
 0,a@foo.com,"1 Foo Dr, CA",Alice
 1,b@foo.com,"12 Bar Dr, BZ",Bob
 2,b@foo.com,"12 Bar Dr, BZ",Charlie
@@ -34,9 +37,14 @@ Sample Input
 0,OUT,60
 1,IN,90
 1,OUT,120
-Sample Output
+```
+
+## Sample Output
+
+```
 Alice: 60
 Bob: 30
 Aob: 0
 Bar: 0
 Baz: 0
+```
