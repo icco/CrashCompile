@@ -25,11 +25,16 @@ def main lines
     end
   end
 
+  a = {}
   names.sort.each_index do |n|
     n = n.to_s
     p = data[n][:time] if data[n]
     p ||= 0
-    puts "#{names[n]}: #{p}"
+    a[names[n]] = p
+  end
+
+  a.sort {|a, b| [b[1], a[0]] <=> [a[1], b[0]] }.each do |b,c|
+    puts "#{b}: #{c}"
   end
 end
 
