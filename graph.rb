@@ -1,35 +1,26 @@
 #! /usr/bin/env ruby
 
+require 'set'
+
 class Edge < Struct.new(:begin, :end, :length)
 end
-#Dijkstra(Graph, source):
-#    for each vertex v in Graph:                                // Initializations
-#        dist[v] := infinity ;                                  // Unknown distance function from 
-#                                                               // source to v
-#        previous[v] := undefined ;                             // Previous node in optimal path
-#    end for                                                    // from source
-#    
-#    dist[source] := 0 ;                                        // Distance from source to source
-#    Q := the set of all nodes in Graph ;                       // All nodes in the graph are
-#                                                               // unoptimized - thus are in Q
-#    while Q is not empty:                                      // The main loop
-#        u := vertex in Q with smallest distance in dist[] ;    // Start node in first case
-#        remove u from Q ;
-#        if dist[u] = infinity:
-#            break ;                                            // all remaining vertices are
-#        end if                                                 // inaccessible from source
-#        
-#        for each neighbor v of u:                              // where v has not yet been 
-#                                                               // removed from Q.
-#            alt := dist[u] + dist_between(u, v) ;
-#            if alt < dist[v]:                                  // Relax (u,v,a)
-#                dist[v] := alt ;
-#                previous[v] := u ;
-#                decrease-key v in Q;                           // Reorder v in the Queue
-#            end if
-#        end for
-#    end while
-#return dist;
+
+class Graph < Struct.new(:edges, :nodes)
+  def initialize edges
+    self.edges = edges
+    self.nodes = Set.new self.edges.map {|e| [e.begin, e.end] }.flatten
+  end
+
+  def length a, b
+    l = []
+    self.edges.each do |n|
+      l.push n if n.begin == a && n.end == b
+    end
+
+    return l.min
+  end
+
+end
 
 def main lines
   node_count, edge_count = lines[0].split
@@ -38,9 +29,12 @@ def main lines
 
   lines[1..-1].each do |line|
     n = Edge.new
-    n.begin, n.end, n.length = line.split
+    n.begin, n.end, n.length = line.split.map {|i| i.to_i }
     edges.push n
   end
+
+  g = Graph.new edges
+
 end
 
 main(ARGF.readlines.map {|i| i.strip })
