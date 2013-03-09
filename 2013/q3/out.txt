@@ -1,0 +1,5 @@
+Alice: 60
+Bob: 30
+Aob: 0
+Bar: 0
+Baz: 0
