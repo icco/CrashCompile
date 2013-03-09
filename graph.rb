@@ -12,12 +12,35 @@ class Graph < Struct.new(:edges, :nodes)
   end
 
   def length a, b
-    l = []
-    self.edges.each do |n|
-      l.push n if n.begin == a && n.end == b
+    n = {}
+    d = {}
+    p = {}
+
+    self.edges.each do |e|
+      n[e.begin] ||= []
+      n[e.begin].push {:end => e.end, :cost => e.length}
     end
 
-    return l.min
+    self.nodes.each do |n|
+      d[n] = nil
+      p[n] = nil
+    end
+
+    d[a] = 0
+    q = self.nodes
+
+    while !q.empty? do
+      q.each do |n|
+        if d[n] < min
+          min = d[n]
+          u = n
+        end
+
+        q -= u
+      end
+    end
+
+    return l
   end
 
 end
