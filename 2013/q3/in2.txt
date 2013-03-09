@@ -1,0 +1,9 @@
+0,a@foo.com,"1 Foo Dr, CA",Alice
+1,b@foo.com,"12 Bar Dr, BZ",Bob
+2,b@foo.com,"12 Bar Dr, BZ",Charlie
+3,b@foo.com,"12 Bar Dr, BZ",Bar
+0,IN,0
+0,OUT,60
+1,IN,90
+1,OUT,120
+1,IN,95

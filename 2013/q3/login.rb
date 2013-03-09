@@ -14,12 +14,13 @@ def main lines
   entries.each do |e|
     if e.size == 3
       if e[1] == "IN"
-        if data[e[0]][:in].nil?
+        if data[e[0]].nil? || data[e[0]][:in].nil?
           data[e[0]] ||= { :in => e[2].to_i, :time => 0 }  
           data[e[0]] = { :in => e[2].to_i }
         else
+          data[e[0]] ||= {}
           data[e[0]][:time] ||= 0
-          data[e[0]][:time] += 7200
+          data[e[0]][:time] += [ (e[2].to_i - data[e[0]][:in]), 7200].min
         end
       elsif e[1] == "OUT"
         data[e[0]][:time] ||= 0
