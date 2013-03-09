@@ -33,7 +33,7 @@ def main lines
     a[names[n]] = p
   end
 
-  a.sort {|a, b| [b[1], a[0]] <=> [a[1], b[0]] }.each do |b,c|
+  a.sort {|a, b| [b[1], a[0]] <=> [a[1], b[0]] }[0...5].each do |b,c|
     puts "#{b}: #{c}"
   end
 end
